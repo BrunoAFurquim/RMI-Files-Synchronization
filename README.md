@@ -30,8 +30,8 @@ Protocolos de Sincronismo
 Escolha um dos seguintes modos ao iniciar o cliente:
 
 Protocolo Descrição Parâmetro
-R Requisição simples --mode R
-RR Requisição-Resposta com confirmação --mode RR
+R Requisição simples --mode R |
+RR Requisição-Resposta com confirmação --mode RR |
 RRA Requisição-Resposta com confirmação assíncrona --mode RRA
 
 Intervalo de Verificação
