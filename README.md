@@ -84,7 +84,9 @@ hashlib: Cálculo de hashes para verificação
 
 logging: Registro de logs
 
+
 Cliente
+
 urllib.request ou http.client: Requisições HTTP
 
 threading: Monitoramento em segundo plano
