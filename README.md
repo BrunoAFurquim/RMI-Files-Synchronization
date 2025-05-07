@@ -65,34 +65,26 @@ Verifique a sincronização em client/slave.txt
 `$auth = python -c "from common.auth import create_auth_token; print(create_auth_token('admin','senha_admin'))"`
 
 # Testar endpoint
-
+```
 $body = @{method="check_master_version"; auth_token=$auth} | ConvertTo-Json
 Invoke-WebRequest -Uri "http://localhost:8000/check_master_version" -Method POST -Body $body -Headers @{"Content-Type"="application/json"}
+```
 📚 Dependências
 O projeto utiliza apenas módulos da biblioteca padrão do Python 3.12:
 
 Servidor
 http.server: Servidor HTTP básico
-
 threading: Manipulação de threads
-
 json: Serialização de dados
-
 os: Operações com sistema de arquivos
-
 hashlib: Cálculo de hashes para verificação
-
 logging: Registro de logs
-
 
 Cliente
 
 urllib.request ou http.client: Requisições HTTP
-
 threading: Monitoramento em segundo plano
-
 hashlib: Verificação de versão
-
 argparse: Parsing de argumentos
 
 🏗️ Estrutura do Projeto
