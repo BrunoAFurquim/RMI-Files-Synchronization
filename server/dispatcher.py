@@ -7,7 +7,6 @@ from common.auth import authenticate
 from server.file_handler import FileHandler
 from server.threads import RequestThread
 
-# Configuração de logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
@@ -19,7 +18,6 @@ logging.basicConfig(
 
 class RequestDispatcher(BaseHTTPRequestHandler):
     def _set_headers(self, status_code=200, extra_headers=None):
-        """Configura os cabeçalhos HTTP de resposta"""
         self.send_response(status_code)
         self.send_header('Content-type', 'application/json')
         self.send_header('Connection', 'keep-alive')
@@ -31,14 +29,12 @@ class RequestDispatcher(BaseHTTPRequestHandler):
         self.end_headers()
     
     def do_POST(self):
-        """Processa requisições POST"""
         try:
             content_length = int(self.headers.get('Content-Length', 0))
             if content_length == 0:
                 raise ValueError("Content-Length inválido")
                 
             post_data = self.rfile.read(content_length)
-            
             try:
                 request_data = json.loads(post_data)
             except json.JSONDecodeError as je:
@@ -51,8 +47,7 @@ class RequestDispatcher(BaseHTTPRequestHandler):
                 }
                 self.wfile.write(json.dumps(response).encode())
                 return
-                
-            # Log da requisição recebida
+            
             logging.info(f"Requisição recebida: {request_data.get('method')}")
             
             # Processa em uma thread separada
@@ -70,7 +65,6 @@ class RequestDispatcher(BaseHTTPRequestHandler):
             self.wfile.write(json.dumps(response).encode())
 
     def handle_request(self, request_data):
-        """Manipula a requisição e retorna a resposta"""
         try:
             # Configurações de conexão
             self.protocol_version = 'HTTP/1.1'
@@ -117,7 +111,6 @@ class RequestDispatcher(BaseHTTPRequestHandler):
                     'message': f'Método {method_name} não existe'
                 }
 
-            # 4. Execução do handler
             response = handler(request_data)
             
             # 5. Envio da resposta
@@ -138,9 +131,7 @@ class RequestDispatcher(BaseHTTPRequestHandler):
                 'message': str(e)
             }
 
-    # Handlers específicos
     def _handle_get_content(self, request_data):
-        """Handler para obter conteúdo do arquivo"""
         try:
             content = FileHandler.get_content()
             version = FileHandler.get_version()
@@ -159,7 +150,6 @@ class RequestDispatcher(BaseHTTPRequestHandler):
             raise
 
     def _handle_check_version(self, request_data):
-        """Handler para verificar versão do arquivo"""
         try:
             version = FileHandler.get_version()
             
@@ -176,7 +166,6 @@ class RequestDispatcher(BaseHTTPRequestHandler):
             raise
 
     def _handle_sync(self, request_data):
-        """Handler para sincronização"""
         try:
             mode = request_data.get('mode', 'R')
             auth_token = request_data.get('auth_token')
@@ -193,7 +182,6 @@ class RequestDispatcher(BaseHTTPRequestHandler):
             raise
 
     def _handle_confirm_sync(self, request_data):
-        """Handler para confirmação de sincronização"""
         try:
             protocol = request_data.get('protocol')
             auth_token = request_data.get('auth_token')
@@ -213,7 +201,6 @@ class RequestDispatcher(BaseHTTPRequestHandler):
             raise
 
     def _handle_update_file(self, request_data):
-        """Handler para atualização do arquivo master"""
         try:
             auth_token = request_data.get('auth_token')
             new_content = request_data.get('new_content')
