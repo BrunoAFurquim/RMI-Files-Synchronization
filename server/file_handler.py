@@ -23,11 +23,9 @@ class FileHandler:
     
     @classmethod
     def initialize(cls):
-        """Inicialização robusta dos arquivos com verificação completa"""
+            # Cria master.txt com permissões adequadas
         try:
             cls.BASE_DIR.mkdir(exist_ok=True, mode=0o755)
-            
-            # Cria master.txt com permissões adequadas
             if not cls.MASTER_FILE.exists():
                 with open(cls.MASTER_FILE, 'w', encoding='utf-8') as f:
                     f.write("# Conteúdo inicial\n")
@@ -108,7 +106,7 @@ class FileHandler:
                 'auth_token': auth_token[:6] + '...',  # Reduz informação sensível
                 'mode': mode,
                 'status': 'success',
-                'client_ip': '127.0.0.1'  # Exemplo, pode ser adaptado
+                'client_ip': '127.0.0.1'
             }
             
             # Cria backup do log atual

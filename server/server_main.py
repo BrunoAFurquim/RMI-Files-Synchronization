@@ -8,13 +8,11 @@ class MyHTTPServer(HTTPServer):
     """Classe customizada para melhor controle do servidor HTTP"""
     def __init__(self, server_address, RequestHandlerClass):
         super().__init__(server_address, RequestHandlerClass)
-        # Configurações otimizadas
-        self.request_queue_size = 20  # Aumenta a fila de conexões
-        self.timeout = 60  # Timeout de 60 segundos
-        self.max_packet_size = 8192  # Tamanho máximo do pacote
+        self.request_queue_size = 20
+        self.timeout = 60 
+        self.max_packet_size = 8192 
 
 def run_server():
-    # Configuração de logging
     logging.basicConfig(
         level=logging.INFO,
         format='%(asctime)s - %(levelname)s - %(message)s',
@@ -24,7 +22,6 @@ def run_server():
         ]
     )
 
-    # Inicializa o handler de arquivos
     try:
         FileHandler.initialize()
         logging.info("Arquivos do servidor inicializados com sucesso")
@@ -32,7 +29,6 @@ def run_server():
         logging.critical(f"Falha na inicialização: {e}")
         return
 
-    # Configuração do servidor
     server_address = ('localhost', 8000)
     
     try:

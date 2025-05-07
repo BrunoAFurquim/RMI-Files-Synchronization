@@ -22,7 +22,7 @@ def main():
     
     try:
         while True:  # Mantém o programa ativo
-            time.sleep(1)  # Agora funcionará corretamente
+            time.sleep(1)  
     except KeyboardInterrupt:
         monitor.stop()
         print("Cliente encerrado.")
