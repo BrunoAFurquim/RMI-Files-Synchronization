@@ -17,15 +17,18 @@ Sistema de sincronização de arquivos distribuído utilizando RMI (Remote Metho
 1. Inicie o Servidor (Terminal 1)
 
 ```
- $env:PYTHONPATH = "$pwd
- python -m server.server_main
+# Configuração definitiva do Python path
+$env:PYTHONPATH = "$pwd"
+
+# Execute como módulo Python
+python -m server.server_main
 ```
 
 2. Execute o Cliente (Terminal 2)
 
 ```
- $env:PYTHONPATH = "$pwd
- python -m client.client_main --user admin --password admin123 --mode R --interval 5
+$env:PYTHONPATH = "$pwd"
+python -m client.client_main --user admin --password admin123 --mode R --interval 5
 ```
 
 3. Testando com cURL/PowerShell
