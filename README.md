@@ -37,7 +37,8 @@ RRA Requisição-Resposta com confirmação assíncrona --mode RRA
 Intervalo de Verificação
 Defina o intervalo (em segundos) entre verificações de atualização com --interval (padrão: 5 segundos).
 
-🧪 Testando o Sistema \n
+🧪 Testando o Sistema
+
 Inicie o servidor
 
 ```
