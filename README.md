@@ -72,40 +72,6 @@ Invoke-WebRequest -Uri "http://localhost:8000/check_master_version" -Method POST
 📚 Dependências
 O projeto utiliza apenas módulos da biblioteca padrão do Python 3.12:
 
-Servidor
-http.server: Servidor HTTP básico
-threading: Manipulação de threads
-json: Serialização de dados
-os: Operações com sistema de arquivos
-hashlib: Cálculo de hashes para verificação
-logging: Registro de logs
-
-Cliente
-
-urllib.request ou http.client: Requisições HTTP
-threading: Monitoramento em segundo plano
-hashlib: Verificação de versão
-argparse: Parsing de argumentos
-
-🏗️ Estrutura do Projeto
-sync_rmi_project/
-├── client/
-│ ├── client_main.py # Ponto de entrada
-│ ├── stub.py # Proxy RMI
-│ └── sync_monitor.py # Monitor de sincronização
-├── server/
-│ ├── server_main.py # Servidor principal
-│ ├── dispatcher.py # Manipulador de requisições
-│ └── file_handler.py # Gerenciamento de arquivos
-├── common/
-│ ├── auth.py # Autenticação
-│ └── protocol.py # Definição de protocolos
-├── interface/
-│ └── remote_interface.py # Interface RMI
-├── README.md
-└── requirements.txt # Módulos necessários
-🔧 Troubleshooting
-
 Problemas Comuns
 Erro de conexão: Verifique se o servidor está rodando e a porta 8000 está livre
 
